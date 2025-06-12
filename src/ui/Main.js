@@ -3,6 +3,7 @@ import ScreenType from "../data/models/ScreenType";
 import {Alert, Box, Snackbar} from "@mui/material";
 import BottomBar from "./components/navigation/BottomBar";
 import TopAppBar from "./components/navigation/TopAppBar";
+import SvgTool from "./screens/tool/SvgTool";
 
 const Main = () => {
     const [screenType, setScreenType] = useState(ScreenType.PREVIEW);
@@ -26,8 +27,20 @@ const Main = () => {
             <TopAppBar
                 onButtonClick={onButtonClick}
             />
-            {/*{screen}*/}
+
+            <Box
+                sx={{
+                    flexGrow: 1,
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                }}
+            >
+                <SvgTool />
+            </Box>
+
             <BottomBar/>
+
             <Snackbar
                 open={openSnackbar}
                 autoHideDuration={3000}
