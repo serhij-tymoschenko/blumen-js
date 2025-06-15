@@ -109,12 +109,14 @@ const SvgTool = ({
                     onPngRemove={onPngRemove}
                 />
 
-                <ToolOutput
-                    combinedSvgSrc={combinedSvgSrc}
-                    svgName={svgName}
-                    svgSrc={svgSrc}
-                    pngSrc={pngSrc}
-                />
+                {svgSrc !== "<svg></svg>" &&
+                    <ToolOutput
+                        combinedSvgSrc={combinedSvgSrc}
+                        svgName={svgName}
+                        svgSrc={svgSrc}
+                        pngSrc={pngSrc}
+                    />
+                }
             </Stack>
 
             <TraitPreview

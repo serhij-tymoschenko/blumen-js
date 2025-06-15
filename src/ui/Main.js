@@ -36,7 +36,7 @@ const Main = () => {
                     alignItems: 'center',
                 }}
             >
-                <SvgTool />
+                <SvgTool setSnackbarMessage={setSnackbarMessage} setOpenSnackbar={setOpenSnackbar}/>
             </Box>
 
             <BottomBar/>

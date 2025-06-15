@@ -15,7 +15,6 @@ const ToolOutput = ({
         ? <Box paddingLeft={5.7}>
             <Stack spacing={2} direct ion="column">
                 <Button
-                    variant="contained"
                     onClick={() => downloadSvg(combinedSvgSrc, svgName)}
                     endIcon={<DownloadIcon/>}
                 >
