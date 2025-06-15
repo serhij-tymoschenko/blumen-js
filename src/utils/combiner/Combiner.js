@@ -26,7 +26,7 @@ export const combineTogether = ({
                              traits,
                              width,
                              height,
-                             isPureTrait
+                             isPureTrait = false
                          }) => {
     let combinedContent = "";
     let combinedStyle = [];
@@ -57,8 +57,8 @@ export const combineTogether = ({
                 </g>
             `;
         } else {
-            const [imageW, imageH] = (traitSrc.isBackground)
-                ? [553, 736]
+            const [imageW, imageH] = (trait.isBackground)
+                ? [552, 736]
                 : [380, 600];
 
             combinedContent += `
@@ -104,5 +104,6 @@ export const combineTogether = ({
             ${defs}
             ${content}
         </svg>    
-    `;
+    `
+        .trim();
 }

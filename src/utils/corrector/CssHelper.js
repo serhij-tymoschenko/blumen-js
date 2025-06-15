@@ -12,7 +12,6 @@ export const addCss = (svgSrc) => {
         });
 
         classes[clsIndex++] = style;
-        console.log(classes[clsIndex - 1])
         const clsId = Object.keys(classes).find(key => classes[key] === style);
         localSvg = localSvg.replace(`style="${match[1]}"`, `class="cls-${clsId}"`);
     })

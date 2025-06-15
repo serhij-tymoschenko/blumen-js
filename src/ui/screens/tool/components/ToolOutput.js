@@ -1,6 +1,6 @@
 import {formatSize, getSvgSize} from "../../../../utils/SvgSizeHelper";
 import {Box, Button, Stack, Typography} from "@mui/material";
-import {downloadSvg} from "../../../../utils/download/DownloadHelper";
+import {downloadSvg} from "../../../../utils/files/DownloadHelper";
 import DownloadIcon from '@mui/icons-material/Download';
 
 const ToolOutput = ({

@@ -7,6 +7,7 @@ import {combineTogether} from "../../../utils/combiner/Combiner";
 import Trait from "../../../data/models/Trait";
 import {correct} from "../../../utils/corrector/Corrector";
 import {toSvgFile} from "../../../utils/FileHelper";
+import {hasExactRatio} from "../../../utils/RatioHelper";
 
 const SvgTool = ({
                      setOpenSnackbar,
@@ -17,11 +18,6 @@ const SvgTool = ({
     const [pngSrc, setPngSrc] = useState(null);
 
     const [combinedSvgSrc, setCombinedSvgSrc] = useState("<svg></svg>");
-
-    const REQUIRED_RATIO = 380 / 600;
-    const hasExactRatio = (width, height) => {
-        return (width / height) === REQUIRED_RATIO;
-    };
 
     useEffect(() => {
         const correctedSvgSrc = correct(svgSrc)

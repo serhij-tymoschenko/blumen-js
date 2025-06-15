@@ -4,8 +4,11 @@ class Trait {
         this.isVisible = isVisible;
         this.isBackground = isBackground;
     }
-    clone(src) {
+    copy = (src, isBackground = false) => {
         return new Trait({src: src, isVisible: this.isVisible, isBackground: this.isBackground})
+    }
+    changeVisibility = () => {
+        return new Trait({src: this.src, isVisible: !this.isVisible, isBackground: this.isBackground})
     }
 }
 

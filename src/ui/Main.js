@@ -4,6 +4,7 @@ import {Alert, Box, Snackbar} from "@mui/material";
 import BottomBar from "./components/navigation/BottomBar";
 import TopAppBar from "./components/navigation/TopAppBar";
 import SvgTool from "./screens/tool/SvgTool";
+import Preview from "./screens/preview/Preview";
 
 const Main = () => {
     const [screenType, setScreenType] = useState(ScreenType.PREVIEW);
@@ -18,9 +19,9 @@ const Main = () => {
         setScreenType(buttonType);
     };
 
-    // const screen = (screenType === ScreenType.SVG_TOOL)
-    //     ? <SvgTool setOpenSnackbar={setOpenSnackbar} setSnackbarMessage={setSnackbarMessage}/>
-    //     : <Preview setOpenSnackbar={setOpenSnackbar} setSnackbarMessage={setSnackbarMessage}/>
+    const screen = (screenType === ScreenType.SVG_TOOL)
+        ? <SvgTool setOpenSnackbar={setOpenSnackbar} setSnackbarMessage={setSnackbarMessage}/>
+        : <Preview setOpenSnackbar={setOpenSnackbar} setSnackbarMessage={setSnackbarMessage}/>
 
     return (
         <Box sx={{display: 'flex', flexDirection: 'column', height: '100vh'}}>
@@ -36,7 +37,7 @@ const Main = () => {
                     alignItems: 'center',
                 }}
             >
-                <SvgTool setSnackbarMessage={setSnackbarMessage} setOpenSnackbar={setOpenSnackbar}/>
+                {screen}
             </Box>
 
             <BottomBar/>
