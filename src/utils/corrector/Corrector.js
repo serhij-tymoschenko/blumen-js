@@ -40,7 +40,7 @@ const correctBlue = (svgSrc) => {
 
 const removeDefs = (svgSrc) => {
     return svgSrc
-        .replace(DEFS_REGEX, "")
+        .replace(SINGLE_DEFS_REGEX, "")
 }
 
 const correctSvg = (svgSrc) => {
@@ -61,15 +61,15 @@ const addClasses = (svgSrc) => {
     return svgSrc
 }
 
-const correct = (svgSrc) => {
+export const correct = (svgSrc) => {
     let localSvg = svgSrc;
 
     localSvg = removeRedundantInfo(localSvg)
     localSvg = correctSvg(localSvg)
-    localSvg = removeDefs(localSvg)
     localSvg = correctInkscape(localSvg)
     localSvg = correctDesigner(localSvg)
     localSvg = addClasses(localSvg)
+    localSvg = removeDefs(localSvg)
     localSvg = correctBlue(localSvg)
     localSvg = removeEmptyLines(localSvg)
 

@@ -22,7 +22,7 @@ const extractDefs = (svg) => {
         : "";
 }
 
-const combineTogether = ({
+export const combineTogether = ({
                              traits,
                              width,
                              height,
@@ -65,8 +65,8 @@ const combineTogether = ({
                 <image
                     x="${offX}"
                     y="${offY}"
-                    width="${imageW}"
-                    height="${imageH}"
+                    width="${imageW}px"
+                    height="${imageH}px"
                     href="${traitSrc}"
                 />
             `;
@@ -100,6 +100,9 @@ const combineTogether = ({
         `;
 
     return `
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 ${width} ${height}">
+        <svg xmlns="http://www.w3.org/2000/svg" ${(isPureTrait) ? "" : `fill="none"`} viewBox="0 0 ${width} ${height}">
+            ${defs}
+            ${content}
+        </svg>    
     `;
 }
