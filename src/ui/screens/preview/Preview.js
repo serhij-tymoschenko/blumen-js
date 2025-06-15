@@ -165,7 +165,7 @@ const Preview = ({setOpenSnackbar, setSnackbarMessage}) => {
     const onSrcChange = async (file, i) => {
         const update = (data, isBackground = false) => {
             const updatedTraits = [...traits];
-            updatedTraits[i] = updatedTraits[i].copy(data.src, isBackground);
+            updatedTraits[i] = new Trait({ src: data.src, isBackground: isBackground});
             setTraits(updatedTraits);
         }
 

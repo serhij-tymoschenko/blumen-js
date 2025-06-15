@@ -1,5 +1,6 @@
 import {CONTENT_BODY_REGEX, DEFS_BODY_REGEX, DEFS_REGEX, STYLE_BODY_REGEX, STYLE_REGEX} from "./CombinerRegex";
 import {removeRedundantInfo} from "../corrector/Corrector";
+import trait from "../../data/models/Trait";
 
 const extractContent = (svg) => {
     const match = svg.match(CONTENT_BODY_REGEX)
@@ -107,3 +108,67 @@ export const combineTogether = ({
     `
         .trim();
 }
+
+export const combineGrid = (traits, requiredWidth, requiredHeight) => {
+    let combinedContent = "";
+    let combinedStyles = [];
+    let combinedDefs = [];
+
+    const rowsCount = Math.floor(traits.length / 5);
+
+    let localItems = traits.length > 5
+        ? [
+            traits
+                .slice(0, 5)
+                .map(trait => trait.src),
+            traits
+                .slice(5)
+                .map(trait => trait.src)
+        ]
+        : [
+            traits
+                .slice(0, 5)
+                .map(trait => trait.src)
+        ]
+
+    for (let i = 0; i < localItems.length; i++) {
+        const offsetY = i * requiredHeight;
+        for (let j = 0; j < localItems[i].length; j++) {
+            const item = localItems[i][j];
+
+            const svg = item.replace(/cls-/g, `item-${i}${j}-cls-`);
+
+            const styles = extractStyle(svg);
+            if (styles) combinedStyles.push(styles);
+
+            const defs = extractDefs(svg);
+            if (defs) combinedDefs.push(defs);
+
+            const offsetX = (j) * requiredWidth
+
+            const content = extractContent(svg);
+            combinedContent += `
+            <g transform="translate(${offsetX}, ${offsetY})">
+                ${content}
+            </g>
+        `;
+        }
+    }
+
+    const defs = `
+        <defs>
+            ${combinedDefs.join("\n")}
+            <style>
+                ${combinedStyles.join("\n")}
+            </style>
+        </defs>
+    `;
+
+    return `
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" width="${requiredWidth * 5}" height="${requiredHeight * rowsCount}" viewBox="0 0 ${requiredWidth * 5} ${requiredHeight * rowsCount}">
+            ${defs}
+            ${combinedContent}
+        </svg>
+    `;
+}
+
