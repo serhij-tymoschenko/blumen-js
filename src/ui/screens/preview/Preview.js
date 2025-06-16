@@ -2,7 +2,7 @@ import {useCallback, useEffect, useState} from "react";
 import Trait from "../../../data/models/Trait";
 import {replaceColors} from "../../../utils/ColorHelper";
 import {combineTogether} from "../../../utils/combiner/Combiner";
-import {hasScaledRatio} from "../../../utils/RatioHelper";
+import {hasScaledRatio} from "../../../utils/files/RatioHelper";
 import {Box, Paper, Stack, Typography} from "@mui/material";
 import Showcase from "./components/lhs/Showcase";
 import PreviewGrid from "./components/PreviewGrid";

@@ -6,8 +6,8 @@ import ToolOutput from "./components/ToolOutput";
 import {combineTogether} from "../../../utils/combiner/Combiner";
 import Trait from "../../../data/models/Trait";
 import {correct} from "../../../utils/corrector/Corrector";
-import {toSvgFile} from "../../../utils/FileHelper";
-import {hasExactRatio} from "../../../utils/RatioHelper";
+import {toSvgFile} from "../../../utils/files/FileHelper";
+import {hasExactRatio} from "../../../utils/files/RatioHelper";
 
 const SvgTool = ({
                      setOpenSnackbar,

@@ -3,7 +3,7 @@ import {names} from "../../../../utils/Constants";
 import DropMenu from "./drop_menu/DropMenu";
 import TraitPreview from "../../../components/TraitPreview";
 import {Stack, Typography} from "@mui/material";
-import {toSvgFile} from "../../../../utils/FileHelper";
+import {toSvgFile} from "../../../../utils/files/FileHelper";
 
 const ImageGrid = ({traits, setTraits, combinedTraits, onVisibilityChange, onSrcChange, onSrcReset}) => {
     const handleDragStart = (index) => (event) => {

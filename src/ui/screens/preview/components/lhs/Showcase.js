@@ -1,7 +1,7 @@
 import Hex from "./Hex";
 import {Stack} from "@mui/material";
 import TraitPreview from "../../../../components/TraitPreview";
-import {toSvgFile} from "../../../../../utils/FileHelper";
+import {toSvgFile} from "../../../../../utils/files/FileHelper";
 
 const Showcase = ({showcaseSrc, hexSrc}) => {
     return (

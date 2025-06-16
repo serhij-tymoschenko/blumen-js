@@ -1,4 +1,4 @@
-import {toSvgFile} from "../FileHelper";
+import {toSvgFile} from "./FileHelper";
 import JSZip from "jszip";
 import {names} from "../Constants";
 import {combineGrid} from "../combiner/Combiner";

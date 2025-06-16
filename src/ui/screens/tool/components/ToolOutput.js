@@ -1,4 +1,4 @@
-import {formatSize, getSvgSize} from "../../../../utils/SvgSizeHelper";
+import {formatSize, getSvgSize} from "../../../../utils/files/SvgSizeHelper";
 import {Box, Button, Stack, Typography} from "@mui/material";
 import {downloadSvg} from "../../../../utils/files/DownloadHelper";
 import DownloadIcon from '@mui/icons-material/Download';
