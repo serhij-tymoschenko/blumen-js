@@ -1,4 +1,4 @@
-export const XML_REGEX = /<\\?xml\\s+[^?]*\\?>/g
+export const XML_REGEX = /<\?xml\s+[^?]*\?>/g
 export const COMMENT_REGEX = /<!--[^-]+-->/g
 export const DOCTYPE_REGEX = /<!DOCTYPE[^>]+>/g
 
