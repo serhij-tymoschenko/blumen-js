@@ -94,6 +94,7 @@ const ImageGrid = ({traits, setTraits, combinedTraits, onVisibilityChange, onSrc
                                 height={184}
                                 borderRadius={5}
                                 trait={toSvgFile(trait.src)}
+                                isVisible={trait.isVisible}
                             />
                         </div>
                         : <TraitPreview
@@ -101,6 +102,7 @@ const ImageGrid = ({traits, setTraits, combinedTraits, onVisibilityChange, onSrc
                             height={184}
                             borderRadius={5}
                             trait={toSvgFile(trait.src)}
+                            isVisible={trait.isVisible}
                         />
                     }
                 </Stack>

@@ -4,14 +4,15 @@ const TraitPreview = ({
     width,
     height,
     borderRadius,
-    trait
+    trait,
+    isVisible = true
                       }) => {
     return <>
         <Box
             sx={{
                 width: width,
                 height: height,
-                border: '2px dashed #2f7d31',
+                border: `2px dashed ${isVisible ? "#2f7d31" : "#ef5350"}`,
                 position: 'relative',
                 overflow: 'hidden',
                 display: 'flex',

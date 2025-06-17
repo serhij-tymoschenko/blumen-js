@@ -73,10 +73,10 @@ const DropMenu = ({index, isVisible, onVisibilityChange, onSrcChange, onSrcReset
                 horizontal: 'left',
             }}
         >
-            <MenuItem onClick={onMenuClose}>
+            <MenuItem onClick={onAddButtonClick}>
                 <Button
                     variant="outlined"
-                    onClick={onAddButtonClick}
+                    value={"disabled"}
                     style={{
                         minWidth: 0,
                         width: 24,
@@ -90,10 +90,10 @@ const DropMenu = ({index, isVisible, onVisibilityChange, onSrcChange, onSrcReset
                 </Button>
             </MenuItem>
 
-            <MenuItem onClick={onMenuClose}>
+            <MenuItem onClick={() => onSrcReset(index)}>
                 <Button
                     variant="outlined"
-                    onClick={() => onSrcReset(index)}
+                    value={"disabled"}
                     style={{
                         minWidth: 0,
                         width: 24,
@@ -107,10 +107,10 @@ const DropMenu = ({index, isVisible, onVisibilityChange, onSrcChange, onSrcReset
                 </Button>
             </MenuItem>
 
-            <MenuItem onClick={onMenuClose}>
+            <MenuItem onClick={() => onVisibilityChange(index)}>
                 <Button
                     variant="outlined"
-                    onClick={() => onVisibilityChange(index)}
+                    value={"disabled"}
                     style={{
                         minWidth: 0,
                         width: 24,
