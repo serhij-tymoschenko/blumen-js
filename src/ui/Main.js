@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import ScreenType from "../data/models/ScreenType";
-import {Alert, Box, Snackbar} from "@mui/material";
+import {Alert, Box, Snackbar, Typography} from "@mui/material";
 import BottomBar from "./components/navigation/BottomBar";
 import TopAppBar from "./components/navigation/TopAppBar";
 import SvgTool from "./screens/tool/SvgTool";
@@ -23,11 +23,27 @@ const Main = () => {
         ? <SvgTool setOpenSnackbar={setOpenSnackbar} setSnackbarMessage={setSnackbarMessage}/>
         : <Preview setOpenSnackbar={setOpenSnackbar} setSnackbarMessage={setSnackbarMessage}/>
 
+    const remarkText = (screenType === ScreenType.SVG_TOOL)
+        ? <>
+            * SVG only - for correcting
+            <br/>
+            * SVG with PNG - for combining
+        </>
+        : <>
+            * Drag'n'drop - for trait position changing
+            <br/>
+            * Triple dot button - for adding/removing/hiding
+        </>
+
     return (
         <Box sx={{display: 'flex', flexDirection: 'column', height: '100vh'}}>
             <TopAppBar
                 onButtonClick={onButtonClick}
             />
+
+            <Typography variant="caption" color="#ef5350" padding={1} component="div" alignSelf={"start"} justifySelf={"start"}>
+                {remarkText}
+            </Typography>
 
             <Box
                 sx={{
