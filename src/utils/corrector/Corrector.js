@@ -36,6 +36,7 @@ const correctDesigner = (svgSrc) => {
 const correctBlue = (svgSrc) => {
     return svgSrc
         .replace(/#0000[Ff][Ff]/g, "blue")
+        .replace(/00[Ff]]/g, "blue")
 }
 
 const removeDefs = (svgSrc) => {
