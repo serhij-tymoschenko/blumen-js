@@ -1,4 +1,5 @@
 import {combineTogether} from "./Combiner";
+import { Canvg } from 'canvg';
 
 export const getHexSrc = (base64PngSrc) => {
     return `
@@ -22,28 +23,20 @@ export const getHexSrc = (base64PngSrc) => {
 }
 
 export const toPngSrc = async (svgString) => {
-    const svgBlob = new Blob([svgString], { type: "image/svg+xml;charset=utf-8" });
-    const url = URL.createObjectURL(svgBlob);
-
-    const img = new Image();
-
-    const imgLoaded = () =>
-        new Promise((resolve) => {
-            img.onload = () => resolve();
-        });
-
-    img.src = url;
-    await imgLoaded();
-
-    const width = img.width;
-    const height = img.height;
-
     const canvas = document.createElement("canvas");
+    const ctx = canvas.getContext("2d");
+
+    // Set canvas size based on SVG attributes or fallback
+    const widthMatch = svgString.match(/width="(\d+)"/);
+    const heightMatch = svgString.match(/height="(\d+)"/);
+    const width = widthMatch ? parseInt(widthMatch[1]) : 600;
+    const height = heightMatch ? parseInt(heightMatch[1]) : 600;
     canvas.width = width;
     canvas.height = height;
-    const ctx = canvas.getContext("2d");
-    ctx.clearRect(0, 0, width, height);
-    ctx.drawImage(img, 0, 0);
+
+    // Render SVG onto canvas
+    const v = await Canvg.from(ctx, svgString);
+    await v.render();
 
     const imageData = ctx.getImageData(0, 0, width, height);
     const data = imageData.data;
@@ -60,8 +53,8 @@ export const toPngSrc = async (svgString) => {
         if (!isRowTransparent(topVisibleRow)) break;
     }
 
-    const cropWidth = (-1.0975 * topVisibleRow + 600);
-    const cropHeight = (-1.0975 * topVisibleRow + 600);
+    const cropWidth = Math.max(1, Math.round(-1.0975 * topVisibleRow + 600));
+    const cropHeight = cropWidth;
     const cropX = Math.max(0, Math.floor((width - cropWidth) / 2));
     let cropY = topVisibleRow;
     if (cropY + cropHeight > height) {
@@ -74,10 +67,7 @@ export const toPngSrc = async (svgString) => {
     const croppedCtx = croppedCanvas.getContext("2d");
     croppedCtx.drawImage(canvas, cropX, cropY, cropWidth, cropHeight, 0, 0, cropWidth, cropHeight);
 
-    const base64Png = croppedCanvas.toDataURL("image/png");
-
-    URL.revokeObjectURL(url);
-    return base64Png;
+    return croppedCanvas.toDataURL("image/png");
 };
 
 export const getShowcaseAndHexSrcs = async (traits) => {
