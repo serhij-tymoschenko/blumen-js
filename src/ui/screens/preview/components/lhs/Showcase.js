@@ -3,7 +3,7 @@ import {Stack} from "@mui/material";
 import TraitPreview from "../../../../components/TraitPreview";
 import {toSvgFile} from "../../../../../utils/files/FileHelper";
 
-const Showcase = ({showcaseSrc, hexSrc}) => {
+const Showcase = ({showcaseSrc, hexSrc, isDarkTheme}) => {
     return (
         <Stack
             sx={{
@@ -11,7 +11,7 @@ const Showcase = ({showcaseSrc, hexSrc}) => {
                 justifyContent: 'flex-end',
                 alignItems: 'flex-end',
             }}
-            spacing={1}
+            spacing={2}
         >
             <Hex hexSrc={hexSrc}/>
 
@@ -20,6 +20,7 @@ const Showcase = ({showcaseSrc, hexSrc}) => {
                 height={276}
                 borderRadius={5}
                 trait={toSvgFile(showcaseSrc)}
+                isDarkTheme={isDarkTheme}
             />
         </Stack>
     );

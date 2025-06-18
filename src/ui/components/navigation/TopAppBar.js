@@ -1,9 +1,15 @@
 import AppBar from '@mui/material/AppBar';
-import {Box, Button, Stack, Typography} from "@mui/material";
+import {Box, Button, IconButton, Stack, Typography} from "@mui/material";
 import logo from "../../../res/raw/logo.png";
 import ScreenType from "../../../data/models/ScreenType";
+import DarkModeIcon from '@mui/icons-material/DarkMode';
+import LightModeIcon from '@mui/icons-material/LightMode';
 
-const TopAppBar = ({onButtonClick}) => {
+const TopAppBar = ({
+                       onButtonClick,
+                       isDarkTheme,
+                       onThemeChange,
+                   }) => {
     return <>
         <AppBar position="static" color="success">
             <Box position="relative" width="100vw">
@@ -33,6 +39,22 @@ const TopAppBar = ({onButtonClick}) => {
                     <Button onClick={() => onButtonClick(ScreenType.PREVIEW)} color={"inherit"}>
                         Preview
                     </Button>
+                </Stack>
+
+                <Stack
+                    direction="row"
+                    alignItems="center"
+                    position="absolute"
+                    right={16}
+                    top="50%"
+                    sx={{transform: "translateY(-50%)"}}
+                >
+                    <IconButton color="inherit" onClick={onThemeChange}>
+                        {isDarkTheme
+                            ? <DarkModeIcon fontSize="small"/>
+                            : <LightModeIcon fontSize="small"/>
+                        }
+                    </IconButton>
                 </Stack>
             </Box>
         </AppBar>

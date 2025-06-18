@@ -12,7 +12,11 @@ import {useDropzone} from "react-dropzone";
 import {snooSrc} from "../../../utils/Constants";
 import {getShowcaseAndHexSrcs} from "../../../utils/combiner/SnooCombiner";
 
-const Preview = ({setOpenSnackbar, setSnackbarMessage}) => {
+const Preview = ({
+                     setOpenSnackbar,
+                     setSnackbarMessage,
+                     isDarkTheme
+}) => {
     const [bodyColor, setBodyColor] = useState('#00FF00');
     const [hairColor, setHairColor] = useState('#0000FF');
     const [eyesColor, setEyesColor] = useState('#FFFF00');
@@ -83,7 +87,7 @@ const Preview = ({setOpenSnackbar, setSnackbarMessage}) => {
             const img = new Image();
             img.onload = () => {
                 resolve({width: img.naturalWidth, height: img.naturalHeight});
-                URL.revokeObjectURL(objectUrl);  // clean up
+                URL.revokeObjectURL(objectUrl);
             };
             img.onerror = () => {
                 resolve({width: null, height: null});
@@ -165,7 +169,7 @@ const Preview = ({setOpenSnackbar, setSnackbarMessage}) => {
     const onSrcChange = async (file, i) => {
         const update = (data, isBackground = false) => {
             const updatedTraits = [...traits];
-            updatedTraits[i] = new Trait({ src: data.src, isBackground: isBackground});
+            updatedTraits[i] = new Trait({src: data.src, isBackground: isBackground});
             setTraits(updatedTraits);
         }
 
@@ -200,7 +204,7 @@ const Preview = ({setOpenSnackbar, setSnackbarMessage}) => {
                     padding: 4,
                     textAlign: 'center',
                     alignSelf: 'flex-start',
-                    backgroundColor: isDragActive ? '#f0f0f0' : '#fafafa',
+                    backgroundColor: isDarkTheme ? '#272727' : '#f9f9f9',
                     cursor: 'pointer',
                     mb: 4,
                 }}
@@ -222,6 +226,7 @@ const Preview = ({setOpenSnackbar, setSnackbarMessage}) => {
                     <Showcase
                         showcaseSrc={showcaseSrc}
                         hexSrc={hexSrc}
+                        isDarkTheme={isDarkTheme}
                     />
                 </Box>
 
@@ -232,6 +237,7 @@ const Preview = ({setOpenSnackbar, setSnackbarMessage}) => {
                     onSrcReset={onSrcReset}
                     onVisibilityChange={onVisibilityChange}
                     onSrcChange={onSrcChange}
+                    isDarkTheme={isDarkTheme}
                     sx={{alignSelf: 'flex-end'}}
                 />
 

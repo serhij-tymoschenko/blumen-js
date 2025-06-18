@@ -11,7 +11,8 @@ import {hasExactRatio} from "../../../utils/files/RatioHelper";
 
 const SvgTool = ({
                      setOpenSnackbar,
-                     setSnackbarMessage
+                     setSnackbarMessage,
+                     isDarkTheme
                  }) => {
     const [svgSrc, setSvgSrc] = useState("<svg></svg>");
     const [svgName, setSvgName] = useState(null);
@@ -119,7 +120,8 @@ const SvgTool = ({
                 trait={toSvgFile(combinedSvgSrc)}
                 width={285}
                 height={450}
-                borderRadius={0}/>
+                borderRadius={0}
+                isDarkTheme={isDarkTheme}/>
         </Stack>
     </>
 }

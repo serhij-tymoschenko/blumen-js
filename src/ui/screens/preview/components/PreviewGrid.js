@@ -5,7 +5,15 @@ import TraitPreview from "../../../components/TraitPreview";
 import {Stack, Typography} from "@mui/material";
 import {toSvgFile} from "../../../../utils/files/FileHelper";
 
-const ImageGrid = ({traits, setTraits, combinedTraits, onVisibilityChange, onSrcChange, onSrcReset}) => {
+const PreviewGrid = ({
+                       traits,
+                       setTraits,
+                       combinedTraits,
+                       onVisibilityChange,
+                       onSrcChange,
+                       onSrcReset,
+                       isDarkTheme,
+                   }) => {
     const handleDragStart = (index) => (event) => {
         event.dataTransfer.setData('text/plain', index);
 
@@ -67,7 +75,7 @@ const ImageGrid = ({traits, setTraits, combinedTraits, onVisibilityChange, onSrc
                             index={i}
                             onVisibilityChange={onVisibilityChange}
                             onSrcChange={onSrcChange}
-                            onSrcReset={onSrcReset} />
+                            onSrcReset={onSrcReset}/>
                     </Stack>
 
                     {!trait.isBackground
@@ -79,14 +87,12 @@ const ImageGrid = ({traits, setTraits, combinedTraits, onVisibilityChange, onSrc
                             onDragOver={handleDragOver}
                             style={{
                                 position: 'relative',
-                                width: 138 + 4,
-                                height: 184 + 4,
+                                width: 138,
+                                height: 184,
                                 cursor: 'grab',
                                 borderRadius: 5,
                                 boxSizing: 'border-box',
                                 overflow: 'hidden',
-                                backgroundColor: '#f9f9f9',
-                                boxShadow: '0 2px 6px rgba(0,0,0,0.1)',
                             }}
                         >
                             <TraitPreview
@@ -95,6 +101,7 @@ const ImageGrid = ({traits, setTraits, combinedTraits, onVisibilityChange, onSrc
                                 borderRadius={5}
                                 trait={toSvgFile(trait.src)}
                                 isVisible={trait.isVisible}
+                                isDarkTheme={isDarkTheme}
                             />
                         </div>
                         : <TraitPreview
@@ -103,6 +110,7 @@ const ImageGrid = ({traits, setTraits, combinedTraits, onVisibilityChange, onSrc
                             borderRadius={5}
                             trait={toSvgFile(trait.src)}
                             isVisible={trait.isVisible}
+                            isDarkTheme={isDarkTheme}
                         />
                     }
                 </Stack>
@@ -111,4 +119,4 @@ const ImageGrid = ({traits, setTraits, combinedTraits, onVisibilityChange, onSrc
     );
 };
 
-export default ImageGrid;
+export default PreviewGrid;

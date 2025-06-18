@@ -5,7 +5,8 @@ const TraitPreview = ({
     height,
     borderRadius,
     trait,
-    isVisible = true
+    isVisible = true,
+    isDarkTheme = false
                       }) => {
     return <>
         <Box
@@ -18,7 +19,7 @@ const TraitPreview = ({
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
-                backgroundColor: '#f9f9f9',
+                backgroundColor: `${isDarkTheme ? '#272727' : '#f9f9f9'}`,
                 borderRadius: borderRadius,
             }}
         >
