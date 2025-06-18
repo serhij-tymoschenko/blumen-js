@@ -199,7 +199,7 @@ const Preview = ({
                 {...getRootProps()}
                 elevation={3}
                 sx={{
-                    width: "89%",
+                    width: '100%',
                     border: '2px dashed #2f7d31',
                     padding: 4,
                     textAlign: 'center',
