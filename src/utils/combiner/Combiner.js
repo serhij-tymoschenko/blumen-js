@@ -1,6 +1,5 @@
 import {CONTENT_BODY_REGEX, DEFS_BODY_REGEX, DEFS_REGEX, STYLE_BODY_REGEX, STYLE_REGEX} from "./CombinerRegex";
 import {removeRedundantInfo} from "../corrector/Corrector";
-import trait from "../../data/models/Trait";
 
 const extractContent = (svg) => {
     const match = svg.match(CONTENT_BODY_REGEX)
