@@ -17,9 +17,17 @@ const TopAppBar = ({
                     direction="row"
                     spacing={1}
                     alignItems="center"
-                    justifyContent="center"
-                    width="100%"
+                    position="absolute"
+                    left={16}
+                    top="50%"
+                    sx={{transform: "translateY(-50%)"}}
                 >
+                    <IconButton color="inherit" onClick={onThemeChange}>
+                        {isDarkTheme
+                            ? <DarkModeIcon fontSize="small"/>
+                            : <LightModeIcon fontSize="small"/>
+                        }
+                    </IconButton>
                     <Typography variant="h6">Blumen</Typography>
                     <img src={logo} alt={"logo"} width={32} height={32}/>
                 </Stack>
@@ -28,10 +36,8 @@ const TopAppBar = ({
                     direction="row"
                     spacing={1}
                     alignItems="center"
-                    position="absolute"
-                    left={16}
-                    top="50%"
-                    sx={{transform: "translateY(-50%)"}}
+                    justifyContent="center"
+                    width="100%"
                 >
                     <Button onClick={() => onButtonClick(ScreenType.SVG_TOOL)} color={"inherit"}>
                         Svg Tool
@@ -49,12 +55,7 @@ const TopAppBar = ({
                     top="50%"
                     sx={{transform: "translateY(-50%)"}}
                 >
-                    <IconButton color="inherit" onClick={onThemeChange}>
-                        {isDarkTheme
-                            ? <DarkModeIcon fontSize="small"/>
-                            : <LightModeIcon fontSize="small"/>
-                        }
-                    </IconButton>
+
                 </Stack>
             </Box>
         </AppBar>
