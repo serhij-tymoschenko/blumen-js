@@ -1,6 +1,6 @@
 import {toSvgFile} from "./FileHelper";
 import JSZip from "jszip";
-import {names} from "../Constants";
+import {emptyTraitSvgSrc, names, emptyTraitBehindSvgSrc} from "../Constants";
 import {combineGrid} from "../combiner/Combiner";
 
 export const downloadSvg = (svgSrc, svgName) => {
@@ -22,7 +22,10 @@ export const downloadZip = async (combinedTraits, showcaseSrc, hexSrc) => {
     const zip = new JSZip();
 
     for (let i = 0; i < combinedTraits.length; i++) {
-        await addFromUrl(zip, toSvgFile(combinedTraits[i].src), `${names[i]}.svg`)
+        if (combinedTraits[i].src !== emptyTraitSvgSrc
+        && combinedTraits[i].src !== emptyTraitBehindSvgSrc) {
+            await addFromUrl(zip, toSvgFile(combinedTraits[i].src), `${names[i]}.svg`)
+        }
     }
 
     const firstRowSvg = combineGrid(combinedTraits.slice(0, 5), 552, 736);
