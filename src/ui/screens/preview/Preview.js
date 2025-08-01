@@ -3,7 +3,7 @@ import Trait from "../../../data/models/Trait";
 import {replaceColors} from "../../../utils/ColorHelper";
 import {combineTogether} from "../../../utils/combiner/Combiner";
 import {hasScaledRatio} from "../../../utils/files/RatioHelper";
-import {Box, Paper, Stack, Typography} from "@mui/material";
+import {Box, Container, Paper, Stack, Typography} from "@mui/material";
 import Showcase from "./components/lhs/Showcase";
 import PreviewGrid from "./components/PreviewGrid";
 import SideMenu from "./components/side_menu/SideMenu";
@@ -11,12 +11,13 @@ import {correct} from "../../../utils/corrector/Corrector";
 import {useDropzone} from "react-dropzone";
 import {snooSrc} from "../../../utils/Constants";
 import {getShowcaseAndHexSrcs} from "../../../utils/combiner/SnooCombiner";
+import AttachFileIcon from '@mui/icons-material/AttachFile';
 
 const Preview = ({
                      setOpenSnackbar,
                      setSnackbarMessage,
                      isDarkTheme
-}) => {
+                 }) => {
     const [bodyColor, setBodyColor] = useState('#00FF00');
     const [hairColor, setHairColor] = useState('#0000FF');
     const [eyesColor, setEyesColor] = useState('#FFFF00');
@@ -194,35 +195,52 @@ const Preview = ({
     }
 
     return (
-        <Stack direction="column" spacing={2} sx={{justifyContent: 'center', alignItems: 'center'}}>
-            <Paper
-                {...getRootProps()}
-                elevation={3}
-                sx={{
-                    width: '100%',
-                    border: '2px dashed #2f7d31',
-                    padding: 4,
-                    textAlign: 'center',
-                    alignSelf: 'flex-start',
-                    backgroundColor: isDarkTheme ? '#272727' : '#f9f9f9',
-                    cursor: 'pointer',
-                    mb: 4,
-                }}
-            >
-                <input {...getInputProps()} />
-                {isDragActive
-                    ? <Typography>Drop the images here ...</Typography>
-                    : <Typography>Drag and drop images here, or click to select files</Typography>
-                }
-            </Paper>
+        <div
+            style={{
+                display: 'flex',
+                flexDirection: "row",
+                width: '100%',
+                alignItems: 'center', // center horizontally
+                justifyContent: 'center', // center vertically if full height
+                // full viewport height, // space between top and center stacks
+            }}
+        >
 
-            <Stack
-                direction="row"
-                spacing={2}
-                sx={{height: '100%'}}
-                justifyContent="center"
-            >
-                <Box sx={{alignSelf: 'flex-end'}}>
+            <Stack direction="row" spacing={2} sx={{ marginTop: '-85vh', flexGrow: 1, padding: 2}}>
+                    <Paper
+                        {...getRootProps()}
+                        elevation={0}
+                        sx={{
+                            flexGrow: 1,
+                            border: '2px dashed #2f7d31',
+                            padding: 1,
+                            justifyItems: 'center',
+                            backgroundColor: isDarkTheme ? '#272727' : '#f9f9f9',
+                            cursor: 'pointer',
+                        }}
+                    >
+                        <input {...getInputProps()} />
+                        <Stack direction="row">
+                            <AttachFileIcon fontSize="small" sx={{ height: '24px', width: '24px' }} />
+                            <Typography>or drag and drop here</Typography>
+                        </Stack>
+                    </Paper>
+
+                <SideMenu
+                    bodyColor={bodyColor}
+                    setBodyColor={setBodyColor}
+                    hairColor={hairColor}
+                    setHairColor={setHairColor}
+                    eyesColor={eyesColor}
+                    setEyesColor={setEyesColor}
+                    combinedTraits={combinedTraits}
+                    showcaseSrc={showcaseSrc}
+                    hexSrc={hexSrc}
+                />
+            </Stack>
+
+            <Stack direction="row" spacing={2} alignSelf={"center"}  justifySelf={"center"} position={"absolute"}>
+                <Box>
                     <Showcase
                         showcaseSrc={showcaseSrc}
                         hexSrc={hexSrc}
@@ -238,22 +256,11 @@ const Preview = ({
                     onVisibilityChange={onVisibilityChange}
                     onSrcChange={onSrcChange}
                     isDarkTheme={isDarkTheme}
-                    sx={{alignSelf: 'flex-end'}}
-                />
-
-                <SideMenu
-                    bodyColor={bodyColor}
-                    setBodyColor={setBodyColor}
-                    hairColor={hairColor}
-                    setHairColor={setHairColor}
-                    eyesColor={eyesColor}
-                    setEyesColor={setEyesColor}
-                    combinedTraits={combinedTraits}
-                    showcaseSrc={showcaseSrc}
-                    hexSrc={hexSrc}
+                    sx={{ alignSelf: 'flex-end' }}
                 />
             </Stack>
-        </Stack>
+        </div>
+
     );
 };
 

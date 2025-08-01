@@ -11,7 +11,7 @@ const ColorSection = ({bodyColor, setBodyColor, hairColor, setHairColor, eyesCol
     }
 
     return (
-        <Stack spacing={2} direction="column">
+        <Stack spacing={2} direction="row">
             <ColorPicker color={bodyColor} setColor={setBodyColor}/>
 
             <ColorPicker color={hairColor} setColor={setHairColor}/>

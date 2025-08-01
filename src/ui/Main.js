@@ -44,9 +44,6 @@ const Main = () => {
             * SVG with PNG - for combining
         </>
         : <>
-            * Drag'n'drop - for trait position changing
-            <br/>
-            * Triple dot button - for adding/removing/hiding
         </>
 
     return (

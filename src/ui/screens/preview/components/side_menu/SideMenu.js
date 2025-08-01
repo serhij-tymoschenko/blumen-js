@@ -15,7 +15,9 @@ const SideMenu = ({
                   }) => {
     return <>
         <Stack
-            direction="column"
+            direction="row"
+            alignItems="center"
+            spacing={1}
         >
             <Box sx={{flexGrow: 1}}/>
 
