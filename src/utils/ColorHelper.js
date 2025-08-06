@@ -12,6 +12,6 @@ export const replaceColors = (src, bodyColor, hairColor, eyesColor) => {
         .replace(/#0[Ff]0/g, bodyColor)
         .replace(/\blime\b/g, bodyColor)
         .replace(/#[Ff][Ff][Ff][Ff]00/g, eyesColor)
-        .replace(/#[Ff][Ff]0/g, eyesColor)
+        .replace(/#[Ff][Ff]0\b/g, eyesColor)
         .replace(/\bblue\b/g, hairColor)
 }
