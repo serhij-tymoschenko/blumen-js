@@ -50,12 +50,16 @@ const Preview = ({
                 const [front, back] = (index !== 9 && index !== 6)
                     ? [trait, snooTrait]
                     : [snooTrait, trait];
+                const fillPos = (index !== 9 && index !== 6)
+                    ? 0
+                    : 1;
 
                 return trait.copy(
                     combineTogether({
                         traits: [back, front],
                         width: 552,
                         height: 736,
+                        fillPos: fillPos
                     })
                 );
             })

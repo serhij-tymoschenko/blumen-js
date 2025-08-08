@@ -1,5 +1,6 @@
 import {CONTENT_BODY_REGEX, DEFS_BODY_REGEX, DEFS_REGEX, STYLE_BODY_REGEX, STYLE_REGEX} from "./CombinerRegex";
 import {removeRedundantInfo} from "../corrector/Corrector";
+import Fill from "../../data/models/Fill";
 
 const extractContent = (svg) => {
     const match = svg.match(CONTENT_BODY_REGEX)
@@ -23,11 +24,12 @@ const extractDefs = (svg) => {
 }
 
 export const combineTogether = ({
-                             traits,
-                             width,
-                             height,
-                             isPureTrait = false
-                         }) => {
+                                    traits,
+                                    width,
+                                    height,
+                                    isPureTrait = false,
+                                    fillPos = Fill.NONE
+                                }) => {
     let combinedContent = "";
     let combinedStyle = [];
     let combinedDefs = [];
@@ -51,8 +53,17 @@ export const combineTogether = ({
             combinedDefs.push(defs)
 
             const content = extractContent(svg)
+
             combinedContent += `
-                <g transform="translate(${offX}, ${offY})">
+                <g transform="translate(${offX}, ${offY})" fill='${
+                (fillPos === Fill.NONE)
+                    ? 'none'
+                    : (fillPos === Fill.ALL)
+                        ? 'black'
+                        : (fillPos !== i)
+                            ? 'black'
+                            : 'none'
+            }'>
                     ${content}
                 </g>
             `;
@@ -80,14 +91,14 @@ export const combineTogether = ({
                 ${combinedStyle.join("\n")}
             </style>
             ${
-                (isPureTrait)
-                    ? ""
-                    : `
+        (isPureTrait)
+            ? ""
+            : `
                         <clipPath id="clipRect">
                             <rect width="552" height="736" rx="27.6" ry="36.8" />
                         </clipPath>
                         `
-            }
+    }
         </defs>
     `;
 

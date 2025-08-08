@@ -1,5 +1,6 @@
 import {combineTogether} from "./Combiner";
 import { Canvg } from 'canvg';
+import Fill from "../../data/models/Fill";
 
 export const getHexSrc = (base64PngSrc) => {
     return `
@@ -87,14 +88,16 @@ export const getShowcaseAndHexSrcs = async (traits) => {
     const showcaseSrc = combineTogether({
         traits: localTraits,
         width: 552,
-        height: 736
+        height: 736,
+        fillPos: Fill.ALL
     })
 
     const hexTraits = localTraits.filter(trait => !trait.isBackground)
     const combinedHexTraitsSrc = combineTogether({
         traits: hexTraits,
         width: 552,
-        height: 736
+        height: 736,
+        fillPos: Fill.ALL
     })
 
     const hexSrc = getHexSrc(await toPngSrc(combinedHexTraitsSrc));
